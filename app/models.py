@@ -29,7 +29,7 @@ class User(UserMixin,db.Model):
     def verify_password(self,password):
         return check_password_hash(self.pass_secure,password)
     
-    def __repr__(self):
+    def __repr__(self):         #check if positioning is correct
         return f'User {self.username}'
 
 class Role(db.Model):

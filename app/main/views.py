@@ -13,3 +13,4 @@ def index():
 
 # Input! the flask_login decorator '@login_required' that will intercept a request and check if 
 # the user is authenticated and if not the user will be redirected to the login page.
+
