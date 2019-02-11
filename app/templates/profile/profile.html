@@ -3,8 +3,8 @@
 <!-- Styles block -->
 {% block styles %}
 
-    {{ super() }}
-    <link rel="stylesheet" href="{{url_for('static',filename='css/profile.css')}}">
+{{ super() }}
+<link rel="stylesheet" href="{{url_for('static',filename='css/profile.css')}}">
 
 {% endblock %}
 
@@ -16,48 +16,55 @@
 
       <h1>My Profile</h1>
 
-        {% if user.profile_pic_path %}
-        <img src="{{url_for('static',filename=user.profile_pic_path)}}" alt="" class="img-thumbnail">
-        {%else%}
-        <div class="noprof_space">No profile picture</div>
-        {% endif %}
 
-
-        <!-- creating a file upload form -->
-        {% if user == current_user %}
-    <form  action="{{url_for('main.update_pic',uname=user.username)}}" method="post" enctype = "multipart/form-data">
-
-      <input type="file"  name="photo" class="form-control" required>
-      <input type="submit">
-    </form>
-      {% endif %}
-
-        {% if user == current_user %}
-       <div class="beside">
-          <a href="{{url_for('main.update_profile',uname=user.username)}}">Edit profile</a>
-        </div>
-        {% endif %}
-
-      <h3 class="p_space"> {{user.username| capitalize}} </h3>
-
-      <!--Displaying user bio-->
-      {% if user.bio %}
-      <p class="mybio"> {{user.bio}}</p>
+      {% if user.profile_pic_path %}
+      
+      <img src="{{url_for('static',filename=user.profile_pic_path)}}" alt="" class="img-thumbnail imgsize">
       {%else%}
-      <p> {{user.username| capitalize}} has no bio </p>
+      <div class="noprof_space">No profile picture</div>
       {% endif %}
+
+      <div class="profdetails">
+      {% if user == current_user %}
+
+      <div class="beside">
+        <a href="{{url_for('main.update_profile',uname=user.username)}}">Edit profile</a>
+      </div>
+    
+      {% endif %}
+
+      
+          <h3 class="p_space"> {{user.username| capitalize}} </h3>
+  
+          <!--Displaying user bio-->
+          {% if user.bio %}
+          <p class="mybio"> {{user.bio}}</p>
+          {%else%}
+          <p> {{user.username| capitalize}} has no bio </p>
+          {% endif %}
+        </div>
+
+      <!-- creating a file upload form -->
+      {% if user == current_user %}
+      <form action="{{url_for('main.update_pic',uname=user.username)}}" method="post" enctype="multipart/form-data">
+
+        <input type="file" name="photo" class="form-control inputwidth" required>
+        <input type="submit">
+      </form>
+      {% endif %}
+
 
     </div>
 
-  
 
-      <!-- Display profile photo -->
+
+    <!-- Display profile photo -->
     <div class="col-md-6">
-        <div class="vl"></div>
+      <div class="vl"></div>
       <h1 class="pitchtitle">My Pitches</h1>
       <div class="pitchspace">
 
-       <p>Place pitches here</p>
+        <p>Place pitches here</p>
       </div>
 
     </div>
