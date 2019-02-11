@@ -1,0 +1,27 @@
+
+.p_space{
+    margin-left: 45px;
+}
+.mybio{
+    margin-left: 25px;
+}
+.noprof_space{
+    margin-left: 25px;
+    margin-top: 30px;
+    display: inline-block;
+}
+.beside{
+    display: inline-block;
+    margin-left: 100px;
+}
+.vl{
+    border-left: 2px solid rgb(19, 165, 218);
+    height: 500px;
+}
+.pitchtitle{
+    margin-top: -480px;
+    margin-left: 140px;
+}
+.pitchspace{
+    margin-left: 50px;
+}
