@@ -1,4 +1,13 @@
-<div class="navbar navbar-light" style="background-color: #e3f2fd" role="navigation">
+
+<style>
+
+.nav>li>a:focus, .nav>li>a:hover {
+    background-color: rgb(139, 139, 214);
+}
+
+</style>
+
+<div class="navbar navbar-light" style="background-color: rgb(153, 153, 228)" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -16,10 +25,10 @@
 
                 <li style="color:rgb(62, 212, 54);padding:15px;">{{current_user.username}}</li>
                 <!--create a link on our navbar to direct us to the profile page. Link is only visible if user is authenticated-->
-                <li><a href="{{url_for('main.profile',uname=current_user.username)}}">Profile</a></li>
+                <li><a href="{{url_for('main.profile',uname=current_user.username)}}" class="hvr">Profile</a></li>
                 <li><a href="{{url_for('auth.logout')}}">Sign out</a></li>
                 {% else %}
-                <li><a href="{{url_for('auth.login')}}">Sign in</a></li>
+                <li><a href="{{url_for('auth.login')}}">Log in</a></li>
                 {%endif%}
             </ul>
 
