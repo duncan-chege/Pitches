@@ -26,8 +26,8 @@
 }
 .imgsize{
    border-radius: 3%;
-   width: 250px;
-   height: 250px;
+   width: 200px;
+   height: 200px;
    display: inline-block;
 }
 .profdetails{
@@ -37,4 +37,13 @@
     width: 70%;
     margin-top: 20px;
     margin-bottom: 10px;
+}
+textarea.form-control {
+    width: 70%;
+}
+.userdetails{
+    display: inline-block;
+}
+label{
+    margin-top: 20px;
 }
