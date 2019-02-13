@@ -1,8 +1,8 @@
 from flask import render_template,request,redirect,url_for,abort
 from . import main
 from flask_login import login_required
-from ..models import  User
-from .forms import UpdateProfile
+from ..models import  User,Pitch
+from .forms import UpdateProfile, PitchForm
 from ..import db,photos
 
 # Views
@@ -36,6 +36,26 @@ def profile(uname):
             return redirect(url_for('.profile',uname=user.username))
 
     return render_template("profile/profile.html", user = user, form = form )
+
+@main.route('/user/<uname>/pitch',methods = ['GET','POST'])
+@login_required
+def new_pitch(uname):
+    pform = PitchForm()
+    user = User.query.filter_by(username = uname).first()
+
+    if pform.validate_on_submit():
+        category = pform.category.data
+        pitch = pform.review.data
+
+         # Updated review instance
+        new_pitch = Pitch(mycategory=category, mypitch= pitch)
+        new_pitch.save_pitch()
+
+        return redirect(url_for('.profile',uname=user.username))
+
+    title = 'Post a Pitch'
+    return render_template('new_pitch.html',title = title, pitch_form = pform, user = user)
+
 
 # @main.route('/user/<uname>/update',methods = ['GET','POST'])
 # @login_required

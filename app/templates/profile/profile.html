@@ -36,7 +36,7 @@
           <p> {{user.username| capitalize}} has no bio </p>
           {% endif %}
        </div>
-       
+
 <!-- Display form -->
           <div class="updateform">
             {{wtf.quick_form(form)}}
@@ -52,6 +52,7 @@
       <div class="pitchspace">
 
         <p>Place pitches here</p>
+        <a class="ratings" href='/user/<uname>/pitch'> Post a Pitch</a>
       </div>
 
     </div>
