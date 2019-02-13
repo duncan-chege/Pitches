@@ -45,7 +45,7 @@ class Pitch(db.Model):
 
     user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
 
-    def save_review(self):
+    def save_pitch(self):
         db.session.add(self)
         db.session.commit()
 
@@ -53,3 +53,4 @@ class Pitch(db.Model):
     def get_pitches(cls,id):
         pitches = Pitch.query.filter_by(pitch_id=id).all()
         return pitches
+

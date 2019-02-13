@@ -1,4 +1,4 @@
-from flask import render_template,request,redirect,url_for,abort
+from flask import flash,render_template,request,redirect,url_for,abort
 from . import main
 from flask_login import login_required
 from ..models import  User,Pitch
@@ -23,6 +23,8 @@ def profile(uname):
     form = UpdateProfile()
     user = User.query.filter_by(username = uname).first()
 
+    pitches= Pitch.query.all()
+
     if user is None:
         abort(404)
 
@@ -35,26 +37,28 @@ def profile(uname):
 
             return redirect(url_for('.profile',uname=user.username))
 
-    return render_template("profile/profile.html", user = user, form = form )
+    return render_template("profile/profile.html", user = user, form = form, pitches = pitches)
 
-@main.route('/user/<uname>/pitch',methods = ['GET','POST'])
+@main.route('/<uname>/pitch',methods = ['GET','POST'])
 @login_required
-def new_pitch(uname):
+def new_pitch():
     pform = PitchForm()
-    user = User.query.filter_by(username = uname).first()
+    # user = User.query.filter_by(username = uname).first()
 
     if pform.validate_on_submit():
         category = pform.category.data
-        pitch = pform.review.data
+        pitch = pform.pitch.data
+        flash("Your pitch has been received", 'success')
 
-         # Updated review instance
+
+         # Updated pitch instance
         new_pitch = Pitch(mycategory=category, mypitch= pitch)
         new_pitch.save_pitch()
 
-        return redirect(url_for('.profile',uname=user.username))
+        return redirect(url_for('.profile'))
 
     title = 'Post a Pitch'
-    return render_template('new_pitch.html',title = title, pitch_form = pform, user = user)
+    return render_template('new_pitch.html',title = title, pitch_form = pform)
 
 
 # @main.route('/user/<uname>/update',methods = ['GET','POST'])
