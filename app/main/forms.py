@@ -11,6 +11,6 @@ class UpdateProfile(FlaskForm):
     submit = SubmitField('Update')
 
 class PitchForm(FlaskForm):
-    category= StringField('Category title',validators=[InputRequired()], render_kw={"placeholder": "Enter indusrty related fields e.g technology, agriculture, entertainment, etc"})
+    category= StringField('Category title',validators=[InputRequired()], render_kw={"placeholder": "Enter industry related fields e.g technology, agriculture, entertainment, etc"})
     pitch= TextAreaField('Input your pitch', validators=[InputRequired(), Length(min=10, max=100)], render_kw={"placeholder": "Your pitch should not exceed 100 characters"})
     submit = SubmitField('Post')
