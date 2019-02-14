@@ -17,15 +17,10 @@
 
       <h1>My Profile</h1>
 
-<!-- Displaying profile pic -->
-      {% if user.profile_pic_path %}
+<!-- Displaying profile pic -->      
+     
+        <img src="{{url_for('static',filename='default.png')}}" alt="" class="img-thumbnail imgsize">
       
-      <img src="{{url_for('static',filename=user.profile_pic_path)}}" alt="" class="img-thumbnail imgsize">
-      {%else%}
-      <div class="noprof_space">No profile picture</div>
-      {% endif %}
-
-
 <!-- Display user name and bio -->
         <div class="userdetails">
           <h3 class="p_space"> {{user.username| capitalize}} </h3>
@@ -36,21 +31,23 @@
           <p> {{user.username| capitalize}} has no bio </p>
           {% endif %}
        </div>
-z
+
 <!-- Display form -->
           <div class="updateform">
             {{wtf.quick_form(form)}}
           </div>
-          
-        </div>
+           
+        
+          </ul>
+
+      </div>
 
 
     <!-- Display pitch section -->
     <div class="col-md-6">
-      <div class="vl"></div>
-      <h1 class="pitchtitle">My Pitches</h1>
-      <div class="pitchspace">
-
+      <h1 class="title">My Pitches</h1>
+  
+         <a href="{{url_for('main.new_pitch',uname=user.username)}}"> <button class="button buttonpost ">Post a pitch</button></a>
           {% for pitch in pitches %}
   
           <h2> {{pitch.mycategory}} </h2>
@@ -58,12 +55,7 @@ z
           <hr>
 
           {% endfor %}
-          </ul>
-
-        <a class="ratings" href="{{url_for('main.new_pitch',uname=user.username)}}"> Post a Pitch</a>
       </div>
-
-    </div>
   </div>
 </div>
 {% endblock %}

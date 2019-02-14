@@ -1,9 +1,50 @@
+body{
+    font-family: 'Ubuntu', sans-serif;
+}
 .space{
    margin-top: 10em;
 }
 .title{
     margin-left: 14em;
+    font-weight: bolder;
 }
 .text{
     margin-left: 33em;
+    margin-top: 10px;
 }
+.button{
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 16px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+.button1{
+    background-color: white; 
+    color: black; 
+    border: 2px solid #4CAF50;
+    margin-left: 33em;
+  }
+  .button1:hover {
+    background-color: #4CAF50;
+    color: white;
+  }
+  .button2 {
+    background-color: white; 
+    color: black; 
+    border: 2px solid rgb(167, 189, 197);
+  }
+  
+  .button2:hover {
+    background-color: #008CBA;
+    color: white;
+  }
+  .buttonx{
+    margin-left: 39em;
+    background-color: white; 
+    color: black; 
+    border: 2px solid #008CBA;
+  }

@@ -23,7 +23,7 @@ def profile(uname):
     form = UpdateProfile()
     user = User.query.filter_by(username = uname).first()
     
-    pitches= Pitch.query.all()
+    pitches = Pitch.query.filter_by(user_id = user.id).all()
 
     if user is None:
         abort(404)
@@ -52,9 +52,7 @@ def new_pitch(uname):
         category = pform.category.data
         pitch = pform.pitch.data
 
-        new_pitch = Pitch(mycategory=category, mypitch= pitch)
-       
-        # flash("Your pitch has been received", 'success')
+        new_pitch = Pitch(mycategory=category, mypitch= pitch, user_id = user.id)
 
          # Updated pitch instance
         new_pitch.save_pitch()
@@ -62,3 +60,10 @@ def new_pitch(uname):
         return redirect(url_for('main.profile', uname = uname))
 
     return render_template('new_pitch.html', pitch_form = pform)
+
+@main.route('/pitches', methods = ['GET','POST'])
+def pitches():
+    pitches = Pitch.query.all()
+
+    return render_template('pitches.html', pitches = pitches)
+

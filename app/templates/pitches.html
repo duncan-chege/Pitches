@@ -1,0 +1,18 @@
+{% extends 'base.html'%}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+
+            {% for pitch in pitches %}
+  
+            <h2> Category: {{pitch.mycategory}} </h2>
+            <p> 1 minute pitch: {{pitch.mypitch}} </p>
+            <hr>
+  
+            {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
