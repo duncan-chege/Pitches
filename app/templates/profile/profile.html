@@ -36,7 +36,7 @@
           <p> {{user.username| capitalize}} has no bio </p>
           {% endif %}
        </div>
-
+z
 <!-- Display form -->
           <div class="updateform">
             {{wtf.quick_form(form)}}
@@ -51,11 +51,15 @@
       <h1 class="pitchtitle">My Pitches</h1>
       <div class="pitchspace">
 
-        <p> {{pitch.category}} </p>
-        <p> {{pitch.pitch}} </p>
+          {% for pitch in pitches %}
+  
+          <h1> {{pitch.mycategory}} </h1>
+          <p> {{pitch.mypitch}} </p>
+  
+          {% endfor %}
+          </ul>
 
-
-        <a class="ratings" href='/user/<uname>/pitch'> Post a Pitch</a>
+        <a class="ratings" href="{{url_for('main.new_pitch',uname=user.username)}}"> Post a Pitch</a>
       </div>
 
     </div>

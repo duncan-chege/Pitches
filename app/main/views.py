@@ -22,7 +22,7 @@ def index():
 def profile(uname):
     form = UpdateProfile()
     user = User.query.filter_by(username = uname).first()
-
+    
     pitches= Pitch.query.all()
 
     if user is None:
@@ -33,32 +33,35 @@ def profile(uname):
 
             db.session.add(user)
             db.session.commit()
-        
 
             return redirect(url_for('.profile',uname=user.username))
 
     return render_template("profile/profile.html", user = user, form = form, pitches = pitches)
 
-@main.route('/<uname>/pitch',methods = ['GET','POST'])
+@main.route('/user/pitch/<uname>',methods = ['GET','POST'])
 @login_required
-def new_pitch():
+def new_pitch(uname):
+
     pform = PitchForm()
-    # user = User.query.filter_by(username = uname).first()
+    user = User.query.filter_by(username = uname).first()
+
+    if user is None:
+        abort(404)
 
     if pform.validate_on_submit():
         category = pform.category.data
         pitch = pform.pitch.data
+
+        new_pitch = Pitch(mycategory=category, mypitch= pitch)
+       
         flash("Your pitch has been received", 'success')
 
-
          # Updated pitch instance
-        new_pitch = Pitch(mycategory=category, mypitch= pitch)
         new_pitch.save_pitch()
 
-        return redirect(url_for('.profile'))
+        return redirect(url_for('main.profile', uname = uname))
 
-    title = 'Post a Pitch'
-    return render_template('new_pitch.html',title = title, pitch_form = pform)
+    return render_template('new_pitch.html', pitch_form = pform)
 
 
 # @main.route('/user/<uname>/update',methods = ['GET','POST'])
