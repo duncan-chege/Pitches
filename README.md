@@ -7,9 +7,16 @@ Written by *Duncan Chege*. My first attempt at interating psql into my flask app
 
 ## Installation
 
+## Installation
+
 1. Clone the repository
-2. Create a virtual environment and install flask in your repository folder 
-3. Run the IP address on the browser
+2. Create a virtual environment and activate it
+3. Pip install the dependencies from the requirements file
+4. Rename the postgresql database username and password from config.py to be your own
+5. App instance in manage.py should be under development not production if you're changing the database schema
+6. Create a database called bookmodel
+7. Carry out migrations
+8. Run the server using ./start.sh terminal command
 
 ## Behaviour Driven Development
 
